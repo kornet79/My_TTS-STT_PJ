@@ -1,0 +1,26 @@
+{
+  "name": "진인프라 TTS 음성 변환기",
+  "short_name": "진인프라 TTS",
+  "description": "텍스트를 자연스러운 음성으로 변환하는 AI 도구",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#00176a",
+  "theme_color": "#00176a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/진인프라.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/진인프라.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "ko-KR"
+}
