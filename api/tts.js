@@ -1,4 +1,4 @@
-// api/tts.js
+// /api/tts.js
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,12 +12,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 예시용 응답 - 여기에 TTS 서비스 연동 구현 (예: ElevenLabs, OpenAI 등)
-    // 실제로는 fetch나 API 호출 사용
-    const dummyAudio = Buffer.from('DummyAudioData');
+    const openaiRes = await fetch('https://api.openai.com/v1/audio/speech', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: model || 'tts-1',
+        input: text,
+        voice: voice || 'alloy',
+        response_format: 'mp3'
+      })
+    });
+
+    if (!openaiRes.ok) {
+      const error = await openaiRes.json();
+      return res.status(openaiRes.status).json({ error: error.error?.message || 'TTS API 호출 실패' });
+    }
+
+    const audioBuffer = await openaiRes.arrayBuffer();
 
     res.setHeader('Content-Type', 'audio/mpeg');
-    res.status(200).send(dummyAudio);
+    res.status(200).send(Buffer.from(audioBuffer));
   } catch (err) {
     console.error('TTS 변환 실패:', err);
     res.status(500).json({ error: 'TTS 변환 중 오류 발생' });
