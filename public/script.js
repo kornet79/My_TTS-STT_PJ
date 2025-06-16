@@ -69,15 +69,15 @@ async function convertToSpeech() {
 
     try {
         const response = await fetch('/api/tts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                text: text,
-                model: model,
-                voice: voice
-            })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            text: text,
+            model: model,
+            voice: voice
+        })
         });
 
         if (!response.ok) {

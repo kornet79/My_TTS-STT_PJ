@@ -70,3 +70,4 @@ app.listen(PORT, () => {
         console.warn('⚠️  경고: OPENAI_API_KEY가 설정되지 않았습니다. .env 파일을 확인하세요.');
     }
 });
+
